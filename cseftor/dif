@@ -1,0 +1,74 @@
+69c69
+<      1 nmb(22),stiwl(1521,5),dlam(41),weight(41)
+---
+>      1 nmb(22),stiwl(1521,5),dlam(41),weight(22,41)
+90c90
+<       open (40,file='avbps.dat',form='unformatted',status='old')
+---
+>       open (40,file='bps.dat',form='unformatted',status='old')
+92,95c92
+<       read (40) weight
+<       close (40)
+< c     print *,dlam
+< c     print *,weight
+---
+>       print *,dlam
+135,137d131
+<       open (13,file='sflux.dat',status='unknown')
+<       write (13,*) fitflux
+<       close (13)
+144a139,143
+>         read (40) weight
+> c       print *,'cntrwl = ',cntrwl(9),cntrwl(18)
+> c       print *,'weight = ',(weight(9,kk),kk=1,41)
+> c       print *,'weight = ',(weight(18,kk),kk=1,41)
+> c       read (5,*)
+147d145
+<         print *,'data/TABLE.'//position(jj)
+153,154c151,153
+< c       print *,'cntrwl = ',cntrwl
+< c       read (5,*)
+---
+> c       cntrwl(20) = cntrwl(19)
+> c       cntrwl(21) = cntrwl(19)
+> c       cntrwl(22) = cntrwl(19)
+167,168d165
+< c         write(14,*) nmb(k),wl(nmb(k)-1),wl(nmb(k)),wl(nmb(k)+1),
+< c    1                cntrwl(k)
+170a168
+> c       stop
+178,179c176
+<             print *,direc(ipres)//atm(ipres)//'/'//prf(iozprf)//'.'
+<      1       //atm(ipres)//'.dat'
+---
+> 	    print *,direc(ipres)//prf(iozprf)//'.'//atm(ipres)//'.dat'
+183d179
+<             ii = 0
+195,196c191
+<                 call fsavg(ii)
+<                 ii = 1
+---
+> 		call fsavg
+226c221
+<       subroutine fsavg(ii)
+---
+>       subroutine fsavg
+229c224
+<      1 nmb(22),stiwl(1521,5),dlam(41),weight(41)
+---
+>      1 nmb(22),stiwl(1521,5),dlam(41),weight(22,41)
+255,256c250,251
+<                 wt   = weight(i)*(1.-frac) +
+<      1                 weight(i+1)*frac
+---
+> 		wt   = weight(mm,i)*(1.-frac) +
+>      1                 weight(mm,i+1)*frac
+260,264d254
+< c                 if (ii.eq.0 .and. mm.eq.9 .and.m.eq.1) then
+< c                   print *,wl(j)/10.,cntrwl(mm)/10.,
+< c    1               (wl(j)-cntrwl(mm))/10.,d,frac,wt
+< c                   print *,d,frac,wt,m,sum(m),sumw(m)
+< c                 endif
+275,276d264
+< c         if (ii.eq.0 .and. mm.eq.9)
+< c    1      print *,sum(1),sumw(1),sum(1)/sumw(1)

@@ -1,0 +1,10 @@
+ openr,10,'omi_bps.dat',/f77_unformatted
+ dlam=fltarr(41)
+ readu,10,dlam
+ wt=fltarr(22,41)
+ readu,10,wt
+ readu,10,wt
+ readu,10,wt
+ readu,10,wt
+ plot,dlam,wt(0,*)
+ end
